@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+ <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Draw a point (1)</title>
+    </head>
+
+    <body onload="main()">
+        <canvas id="webgl" width="400" height="400">
+        </canvas>
+
+
+        <input type="button" id="clear" value="Clear Canvas" />
+        <br><br>
+
+        <div>
+            <strong>Drawing Mode</strong>
+            <div class="shape_buttons">
+                <button id="square">Square</button>
+                <button id="triangle">Triangle</button>
+                <button id="circle">Circle</button>
+            </div>
+        </div>
+        <br>
+
+        <div>
+            <strong>Shape Color:</strong>
+            <div style="display: flex; gap: 10px; justify-content: space-between;">
+                <div>
+                    <label for="red">Red</label>
+                    <input id="red" type="range" min="0" max="255">
+                </div>
+                <div>
+                    <label for="green">Green</label>
+                    <input id="green" type="range" min="0" max="255">
+                </div>
+                <div>
+                    <label for="blue">Blue</label>
+                    <input id="blue" type="range" min="0" max="255">
+                </div>
+            </div>
+        </div>
+
+        <br>
+        
+        <!-- Shape Size and Segment Count -->
+        <div>
+            <div style="display: flex; gap: 10px; justify-content: space-between;">
+                <div>
+                    <label class="slider_label" for="size_slider">Shape Size</label>
+                    <input type="range" id="size_slider" min="1" max="200" value="50" class="slider-input">
+                </div>
+                <div>
+                    <label class="slider_label" for="segment_slider">(Circles) Segment Count</label>
+                    <input type="range" id="segment_slider" min="3" max="100" value="3" class="slider-input">
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- <script src="../libs/webgl-utils.js"></script>
+        <script src="../libs/webgl-debug.js"></script> -->
+        <script src="../libs/cuon-utils.js"></script>
+        <script src="asgn1.js"></script>
+    </body>
+</html>
