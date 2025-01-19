@@ -27,6 +27,7 @@ let u_size;
 let g_selectedColor = [1.0,1.0,1.0,1.0];
 let g_selectedSize = 20.0;
 let g_selectedType=SQUARE;
+let g_selectedSegments = 10.0;
 
 
 function setupWebGL(){
@@ -75,6 +76,8 @@ function addActionsForHTMLUI(){
     document.getElementById("blue").addEventListener('mouseup', function(){g_selectedColor[2] = this.value/255; }); 
 
     document.getElementById("size_slider").addEventListener('mouseup', function(){g_selectedSize = this.value; }); 
+
+    document.getElementById("segment_slider").addEventListener('mouseup', function(){g_selectedSize = this.value; }); 
 
     document.getElementById('clear').onclick = function() {g_shapesList=[]; renderAllShapes();};
 
@@ -191,7 +194,7 @@ class Circle{
         var size = this.size;
         //gl.vertexAttrib3f(a_position, xy[0], xy[1], 0.0);
         gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
-        //gl.uniform1f(u_size, size);
+        gl.uniform1f(u_size, size);
 
         var d = this.size/200.0; 
         let angleStep = 360/this.segments;
@@ -223,6 +226,7 @@ function click(ev ) {
     let point;
     if (g_selectedType==CIRCLE) {
         point = new Circle();
+        point.segments = g_selectedSegments;
     } else if (g_selectedType==TRIANGLE) {
         point = new Triangle();
     } else {
