@@ -11,7 +11,7 @@ var FSHADER_SOURCE = `
     precision mediump float;
     uniform vec4 u_FragColor;
     void main() {
-        gl_FragColor u_FragColor;
+        gl_FragColor =  u_FragColor;
     }`
 
     // make global either stuff that needs to be passed to shaders or user interfasce elements
@@ -39,6 +39,9 @@ function connectVariablesToGLSL(){
         console.log('Failed to initialize shaders');
         return;
     }
+
+    // a_size = parseFloat(document.getElementById("size_slider").value);
+
     a_position = gl.getAttribLocation(gl.program, 'a_position')
     if (a_position < 0) {
         console.log('Failed to get the storage location of a_position');
@@ -78,15 +81,6 @@ function click(ev ) {
     var g = parseFloat(document.getElementById("green").value);
     var b = parseFloat(document.getElementById("blue").value);
 
-    if ( isNaN(r) || isNaN(g) || isNaN(b) ) {
-        alert("Not valid input. Please enter intergers only");
-        return;
-    }
-
-    if ( r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0 ) {
-        alert("Invalid RGBA values");
-        return;
-    }
 
     g_colors.push([r/255,g/255,b/255,1.0]);
 
