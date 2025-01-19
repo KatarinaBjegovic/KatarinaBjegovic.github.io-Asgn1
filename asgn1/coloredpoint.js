@@ -59,7 +59,7 @@ function main() {
     setupWebGL();
     connectVariablesToGLSL();
 // Register function (event handler) to be called on a mouse press
-    canvas.onmousedown = click(ev);
+    canvas.onmousedown = click;
 
     // specify the color for clearing canvas
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
