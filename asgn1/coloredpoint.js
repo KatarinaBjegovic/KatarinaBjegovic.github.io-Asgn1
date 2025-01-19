@@ -14,6 +14,10 @@ var FSHADER_SOURCE = `
         gl_FragColor =  u_FragColor;
     }`
 
+
+const POINT = 0;
+const TRIANGLE = 1;
+const CIRCLE = 2
     // make global either stuff that needs to be passed to shaders or user interfasce elements
 let canvas;
 let gl;
@@ -22,6 +26,7 @@ let u_FragColor;
 let u_size;
 let g_selectedColor = [1.0,1.0,1.0,1.0];
 let g_selectedSize = 20.0;
+let g_selectedType=SQUARE;
 
 
 function setupWebGL(){
@@ -45,7 +50,6 @@ function connectVariablesToGLSL(){
         return;
     }
 
-    // a_size = parseFloat(document.getElementById("size_slider").value);
 
     a_position = gl.getAttribLocation(gl.program, 'a_position')
     if (a_position < 0) {
@@ -73,9 +77,10 @@ function addActionsForHTMLUI(){
     document.getElementById("size_slider").addEventListener('mouseup', function(){g_selectedSize = this.value; }); 
 
     document.getElementById('clear').onclick = function() {g_shapesList=[]; renderAllShapes();};
-    //document.getElementById('square').onclick = function() {shape="squafe"};
-    //document.getElementById('triangle').onclick = function() {shape="squafe"};
-    //document.getElementById('circle').onclick = function() {shape="squafe"};
+
+    document.getElementById('square').onclick = function() {g_selectedType = SQUARE};
+    document.getElementById('triangle').onclick = function() {g_selectedType=TRIANGLE};
+    // document.getElementById('circle').onclick = function() {g_selectedType=CIRCLE};
 
 
 }
@@ -109,6 +114,9 @@ class Point{
         var xy = this.position;
         var rgba = this.color;
         var size = this.size;
+        
+        gl.disableVertexAttribArray(a_position);
+
         gl.vertexAttrib3f(a_position, xy[0], xy[1], 0.0);
         gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
         gl.uniform1f(u_size, size);
@@ -130,7 +138,7 @@ function drawTriangle(verticies){
 
     gl.blindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticies), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticies), gl.DYNAMIC_DRAW);
 
     // var a_position = gl.getAttribLocation(gl.program, 'a_position');
     // if (a_position < 0) {
@@ -162,7 +170,8 @@ class Triangle{
         gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
         gl.uniform1f(u_size, size);
 
-        drawTriangle([xy[0], xy[1], xy[0]+.1, xy[1], xy[0], xy[1]+.1]); 
+        var d = this.size/200.0; 
+        drawTriangle([xy[0], xy[1], xy[0]+d, xy[1], xy[0], xy[1]+d]); 
     }
 }
 
@@ -177,27 +186,18 @@ var g_shapesList = []
 function click(ev ) {
     [x,y] = convertCoordinatesEventToGL(ev);
 
-    let point = new Point();
+
+    let point;
+    if (g_selectedType==POINT) {
+        point = new Point();
+    } else if (g_selectedType==TRIANGLE) {
+        point = new Triangle();
+    }
+
     point.position = [x,y];
     point.color = g_selectedColor.slice();
     point.size = g_selectedSize;
     g_shapesList.push(point);
-
-// Store the coordinates to g_points array 
-    // g_points.push([x,y]);
-
-    // g_colors.push(g_selectedColor.slice());
-
-    // g_sizes.push(g_selectedSize);
-
-    // dont need this....
-    // if ( x >= 0.0 && y >=0.0) {
-    //     g_colors.push([1.0,0.0,0.0,1.0]);
-    // } else if (x < 0.0 && y < 0.0) {
-    //     g_colors.push([0.0,1.0,0.0,1.0]);
-    // } else {
-    //     g_colors.push([1.0,1.0,1.0,1.0]);
-    // }
 
     renderAllShapes();
 }
