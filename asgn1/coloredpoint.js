@@ -1,10 +1,10 @@
 
 var VSHADER_SOURCE = `
     attribute vec4 a_position;
-    // attribute vec4 a_size;
+    uniform float u_size; 
     void main() {
         gl_Position = a_position;
-        gl_PointSize = 20.0;
+        gl_PointSize = u_size ;
     }`
 
 var FSHADER_SOURCE = `
@@ -19,7 +19,9 @@ let canvas;
 let gl;
 let a_position;
 let u_FragColor;
-let a_size;
+let u_size;
+let g_selectedColor = [1.0,1.0,1.0,1.0];
+let g_selectedSize = 20.0;
 
 
 function setupWebGL(){
@@ -52,12 +54,34 @@ function connectVariablesToGLSL(){
         console.log('Failed to get the storage location of u_FragColor');
         return;
     }
+
+    u_size = gl.getUniformLocation(gl.program, 'u_size');
+    if (!u_size) {
+        console.log('Failed to get the storage location of u_FragColor');
+        return;
+    }
+}
+
+function addActionsForHTMLUI(){
+    document.getElementById("red").addEventListener('mouseup', function(){g_selectedColor[0] = this.value/255; }); 
+    document.getElementById("green").addEventListener('mouseup', function(){g_selectedColor[1] = this.value/255; }); 
+    document.getElementById("blue").addEventListener('mouseup', function(){g_selectedColor[2] = this.value/255; }); 
+
+    document.getElementById("size_slider").addEventListener('mouseup', function(){g_selectedSize = this.value; }); 
+
+    //document.getElementById('square').onclick = function() {shape="squafe"};
+    //document.getElementById('triangle').onclick = function() {shape="squafe"};
+    //document.getElementById('circle').onclick = function() {shape="squafe"};
+
+
 }
 
 
 function main() {
     setupWebGL();
     connectVariablesToGLSL();
+
+    addActionsForHTMLUI();
 // Register function (event handler) to be called on a mouse press
     canvas.onmousedown = click;
 
@@ -70,6 +94,7 @@ function main() {
 
 var g_points = []; // The array for a mouse press
 var g_colors = []; // The array to store the color of a point
+var g_sizes = []
 
 function click(ev ) {
     [x,y] = convertCoordinatesEventToGL(ev);
@@ -77,13 +102,9 @@ function click(ev ) {
 // Store the coordinates to g_points array 
     g_points.push([x,y]);
 
-    var r = parseFloat(document.getElementById("red").value); 
-    var g = parseFloat(document.getElementById("green").value);
-    var b = parseFloat(document.getElementById("blue").value);
+    g_colors.push(g_selectedColor.slice());
 
-
-    g_colors.push([r/255,g/255,b/255,1.0]);
-
+    g_sizes.push(g_selectedSize);
 
     // dont need this....
     // if ( x >= 0.0 && y >=0.0) {
@@ -106,6 +127,8 @@ function convertCoordinatesEventToGL(ev){
     return([x,y]);
 }
 
+
+
 function renderAllShapes(){
     gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -113,10 +136,13 @@ function renderAllShapes(){
     for (var i = 0; i < len; i++) {
         var xy = g_points[i];
         var rgba = g_colors[i];
+        var size = g_sizes[i];
 // Pass the position of a point to a_Position variable
         gl.vertexAttrib3f(a_position, xy[0], xy[1], 0.0);
 
         gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
+
+        gl.uniform1f(u_size, size);
 // Draw a point
         gl.drawArrays(gl.POINTS, 0, 1); 
     }
