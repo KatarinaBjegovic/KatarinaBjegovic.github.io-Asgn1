@@ -15,7 +15,7 @@ var FSHADER_SOURCE = `
     }`
 
 
-const POINT = 0;
+const SQUARE = 0;
 const TRIANGLE = 1;
 const CIRCLE = 2
     // make global either stuff that needs to be passed to shaders or user interfasce elements
@@ -80,7 +80,7 @@ function addActionsForHTMLUI(){
 
     document.getElementById('square').onclick = function() {g_selectedType = SQUARE};
     document.getElementById('triangle').onclick = function() {g_selectedType=TRIANGLE};
-    // document.getElementById('circle').onclick = function() {g_selectedType=CIRCLE};
+    document.getElementById('circle').onclick = function() {g_selectedType=CIRCLE};
 
 
 }
@@ -177,6 +177,28 @@ class Triangle{
 
 
 
+class Circle{
+    constructor(){
+        this.type = 'triangle';
+        this.position = [0.0,0.0,0.0];
+        this.color = [0.5,0.5,0.5];
+        this.size = 5.0;
+    }
+    render() {
+        var xy = this.position;
+        var rgba = this.color;
+        var size = this.size;
+        //gl.vertexAttrib3f(a_position, xy[0], xy[1], 0.0);
+        gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
+        gl.uniform1f(u_size, size);
+
+        var d = this.size/200.0; 
+        drawTriangle([xy[0], xy[1], xy[0]+d, xy[1], xy[0], xy[1]+d]); 
+    }
+}
+
+
+
 var g_shapesList = []
 
 // var g_points = []; // The array for a mouse press
@@ -188,10 +210,12 @@ function click(ev ) {
 
 
     let point;
-    if (g_selectedType==POINT) {
-        point = new Point();
+    if (g_selectedType==CIRCLE) {
+        point = new Circle();
     } else if (g_selectedType==TRIANGLE) {
         point = new Triangle();
+    } else {
+        point = new Point();
     }
 
     point.position = [x,y];
