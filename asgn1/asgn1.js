@@ -6,10 +6,10 @@ var VSHADER_SOURCE =
     ' gl_PointSize = 10.0;\n' +
     '}\n';
 // Fragment shader program
-var FSHADER_SOURCE =
-    'void main() {\n' +
-    ' gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);\n' + // Set the color 
-    '}\n';
+var FSHADER_SOURCE = `
+    void main() {
+       gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0);
+    } `
 
 function main() {
 // Retrieve <canvas> element
