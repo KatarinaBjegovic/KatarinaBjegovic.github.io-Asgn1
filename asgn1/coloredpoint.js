@@ -1,8 +1,9 @@
 
 var VSHADER_SOURCE = `
     attribute vec4 a_position;
+    // attribute vec4 a_size;
     void main() {
-        gl_Position = a_Position;
+        gl_Position = a_position;
         gl_PointSize = 20.0;
     }`
 
@@ -18,6 +19,7 @@ let canvas;
 let gl;
 let a_position;
 let u_FragColor;
+let a_size;
 
 
 function setupWebGL(){
@@ -37,9 +39,9 @@ function connectVariablesToGLSL(){
         console.log('Failed to initialize shaders');
         return;
     }
-    a_position = gl.getAttribLocation(gl.program, 'a_Position')
+    a_position = gl.getAttribLocation(gl.program, 'a_position')
     if (a_position < 0) {
-        console.log('Failed to get the storage location of a_Position');
+        console.log('Failed to get the storage location of a_position');
         return;
     }
     u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
@@ -88,7 +90,7 @@ function click(ev ) {
 
     g_colors.push([r/255,g/255,b/255,1.0]);
 
-    
+
     // dont need this....
     // if ( x >= 0.0 && y >=0.0) {
     //     g_colors.push([1.0,0.0,0.0,1.0]);
@@ -118,7 +120,7 @@ function renderAllShapes(){
         var xy = g_points[i];
         var rgba = g_colors[i];
 // Pass the position of a point to a_Position variable
-        gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0);
+        gl.vertexAttrib3f(a_position, xy[0], xy[1], 0.0);
 
         gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
 // Draw a point
