@@ -140,7 +140,7 @@ let g_selectedSize = 20.0;
 let g_selectedType=SQUARE;
 let g_selectedSegments = 10.0;
 var g_shapesList = [];
-var g_shapesList_WINTER = [];
+var g_shapesList_SAVED = [];
 
 
 function setupWebGL(){
@@ -190,6 +190,10 @@ function addActionsForHTMLUI(){
     document.getElementById('circle').onclick = function() {g_selectedType=CIRCLE};
 
     document.getElementById('pix_winter').onclick = WinterPage;
+
+    document.getElementById('save').onclick = function() {g_shapesList_SAVED = g_shapesList;};
+    document.getElementById('view').onclick = function() {g_shapesList = g_shapesList_SAVED; renderAllShapes();};
+
 
 }
 
@@ -259,51 +263,125 @@ function click(ev ) {
 
 
 function WinterPage() {
-    // let triangles = [
-    //     [0, 140, -40, 80, 40, 80], // top tree
-    //     [0, 100, -60, 0, 60, 0], // mid tree 
-    //     [0, 20, -80, -80, 80, -80], //bottom tree
-    //     [-20, -80, 20, -80, -20, -140], //L stump
-    //     [20, -80, -20, -140, 20, -140], // R stump
-    //     [100, 0, 120, 0, 100, -140], // ski 1 L
-    //     [120, 0, 100, -140, 120, -140], // ski 1 R
-    //     [140, 0, 160, 0, 140, -140], // ski 2 L
-    //     [160, 0, 140, -140, 160, -140] // ski 2 R
-    // ]; 
-    // let black_triangles = [
-    //     [0, 130, -30, 85, 30, 85], // top tree
-    //     [0, 90, -50, 5, 50, 5], // mid tree 
-    //     [0, 10, -70, -75, 70, -75], //bottom tree
-    //     [-15, -70, 15, -70, -15, -135], //L stump
-    //     [15, -70, -15, -135, 15, -135], // R stump
-    //     [105, -5, 115, -5, 105, -135], // ski 1 L
-    //     [115, -5, 105, -135, 115, -135], // ski 1 R
-    //     [145, -5, 155, -5, 145, -135], // ski 2 L
-    //     [155, -5, 145, -135, 155, -135] // ski 2 R
-    // ]; 
-    // let circles = [
-    //     [-10,110,0],
-    //     [10,70,0],
-    //     [-10,30,0],
-    //     [-50,-90,0],
-    //     [30,-70,0],
-    //     [10,-30,0],
-    //     [-10,-50,0],
-    //     [60,-10,0],
-    //     [30,10,0],
-    // ];
+    let triangles = [
+        [-50, 140, -90, 80, -10, 80], // top tree
+        [-50, 100, -110, 0, 10, 0], // mid tree 
+        [-50, 20, -120, -80, 30, -80], //bottom tree
 
-    // let ski_circles = [
-    //     [110,0,0],
-    //     [150,0,0]
-    // ]
+        [-70, -80, -30, -80, -70, -140], //L stump
+        [-30, -80, -70, -140, -30, -140], // R stump
 
-    // let buckles = [
-    //     [105, -45, 115, -45, 105, -95], // buckle 1 L
-    //     [115, -45, 105, -95, 115, -95], // buckle 1 R
-    //     [140, -45, 160, -45, 140, -95], // buckle 2 L
-    //     [160, -45, 140, -95, 160, -95] // buckle 2 R
-    // ]
+        [50, 0, 70, 0, 50, -140], // ski 1 L
+        [70, 0, 50, -140, 70, -140], // ski 1 R
+        [90, 0, 110, 0, 90, -140], // ski 2 L
+        [110, 0, 90, -140, 110, -140] // ski 2 R
+    ]; 
+    let black_triangles = [
+        [-50, 130, -80, 85, -20, 85], // top tree
+        [-50, 90, -100, 5, 0, 5], // mid tree 
+        [-50, 10, -110, -75, 20, -75], //bottom tree
+
+        [-65, -70, -35, -70, -65, -135], //L stump
+        [-35, -70, -65, -135, -35, -135], // R stump
+
+        [55, -5, 65, -5, 55, -135], // ski 1 L
+        [65, -5, 55, -135, 65, -135], // ski 1 R
+        [95, -5, 105, -5, 95, -135], // ski 2 L
+        [105, -5, 95, -135, 105, -135] // ski 2 R
+    ]; 
+    let circles = [
+        [-60,110,0],
+        [-40,70,0],
+        [-60,30,0],
+        [-100,-90,0],
+        [-20,-70,0],
+        [-40,-30,0],
+        [-60,-50,0],
+        [-20,10,0]
+    ];
+
+
+    let ski_circles = [
+        [60,0,0],
+        [100,0,0]
+    ];
+
+    let buckles = [
+        [55, -45, 65, -45, 55, -95], // buckle 1 L
+        [65, -45, 55, -95, 65, -95], // buckle 1 R
+        [90, -45, 110, -45, 90, -95], // buckle 2 L
+        [110, -45, 90, -95, 110, -95] // buckle 2 R
+    ];
+    
+
+    gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
+
+    for (let i = 0; i < triangles.length; i++) {
+        let t_coord = triangles[i];
+        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        let white_tri = new HardTriangle();
+        white_tri.coors = t_coord;
+        white_tri.color = [1.0,1.0,1.0,1.0];
+        g_shapesList.push(white_tri);
+    }
+    
+    for (let i = 0; i < ski_circles.length; i++) {
+        let c_coord = ski_circles[i];
+        c_coord = [c_coord[0]/150, c_coord[1]/150, c_coord[2]/150];
+        let circ = new Circle();
+        circ.position = c_coord;
+        circ.size = 15.0;
+        circ.color = [1.0,1.0,1.0,1.0];
+        circ.segments = 20;
+        g_shapesList.push(circ);
+        let circ_black = new Circle();
+        circ_black.position = c_coord;
+        circ_black.size = 10.0;
+        circ_black.color = [0.0,0.0,0.0,1.0];
+        circ_black.segments = 20;
+        g_shapesList.push(circ_black);
+    }
+
+    for (let i = 0; i < black_triangles.length; i++) {
+        let t_coord = black_triangles[i];
+        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        let black_tri = new HardTriangle();
+        black_tri.coors = t_coord;
+        black_tri.color = [0.0,0.0,0.0,1.0];
+        g_shapesList.push(black_tri);
+    }
+
+    for (let i = 0; i < buckles.length; i++) {
+        let t_coord = buckles[i];
+        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        let buckle = new HardTriangle();
+        buckle.coors = t_coord;
+        buckle.color = [1.0,1.0,1.0,1.0];
+        g_shapesList.push(buckle);
+    }
+
+    gl.uniform4f(u_FragColor, 0.0, 0.0, 0.0, 1.0);
+    for (let i = 0; i < circles.length; i++) {
+        let c_coord = circles[i];
+        c_coord = [c_coord[0]/150, c_coord[1]/150, c_coord[2]/150];
+        let circ = new Circle();
+        circ.position = c_coord;
+        circ.size = 15.0;
+        circ.color = [1.0,1.0,1.0,1.0];
+        circ.segments = 20;
+        g_shapesList.push(circ);
+        let circ_black = new Circle();
+        circ_black.position = c_coord;
+        circ_black.size = 12.0;
+        circ_black.color = [0.0,0.0,0.0,1.0];
+        circ_black.segments = 20;
+        g_shapesList.push(circ_black);
+    }
+    renderAllShapes();
+}
+
+
+function SpringPage() {
     let triangles = [
         [-50, 140, -90, 80, -10, 80], // top tree
         [-50, 100, -110, 0, 10, 0], // mid tree 
