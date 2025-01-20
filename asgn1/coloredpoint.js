@@ -129,7 +129,7 @@ let gl;
 let a_position;
 let u_FragColor;
 let u_size;
-let g_selectedColor = [1.0,1.0,1.0,1.0];
+let g_selectedColor = [0.5,0.5,0.5,1.0];
 let g_selectedSize = 20.0;
 let g_selectedType=SQUARE;
 let g_selectedSegments = 10.0;
@@ -182,8 +182,51 @@ function addActionsForHTMLUI(){
     document.getElementById('triangle').onclick = function() {g_selectedType=TRIANGLE};
     document.getElementById('circle').onclick = function() {g_selectedType=CIRCLE};
 
+    document.getElementById('pix_winter').onclick = displayShapes;
 
 }
+
+function displayShapes(){
+    g_shapesList = [];
+    const triangles = [
+        [0, 300, -80, 200, 80, 200],
+        [-100, 0, 100, 0, 0, 200],
+        [0, 50, -150, -200, 150, -200],
+        [-50, 200, -50, -350, 50, 200],
+        [50, 200, -50, -350, 50, -350],
+        [230, -150, 270, -150, 200, -350],
+        [240, -350, 200, -350, 270, -150],
+        [320, -150, 290, -350, 360, -150],
+        [360, -150, 330, -350, 290, -350]
+    ];
+    for (let t of triangles) {
+        const triangle = new Triangle();
+        triangle.color = [1.0, 1.0, 1.0, 1.0]; // Set color to white
+        triangle.position = [0, 0];
+        drawTriangle(t.map(coord => coord / 400)); // Normalize to WebGL space
+    }
+
+    const circles = [
+        { x: 340, y: -150, r: 20 },
+        { x: 250, y: -150, r: 20 }
+    ];
+
+    
+    for (let c of circles) {
+        const circle = new Circle();
+        circle.color = [1.0, 1.0, 1.0, 1.0]; // Set color to white
+        circle.position = [c.x / 400, c.y / 400]; // Normalize to WebGL space
+        circle.size = c.r / 400; // Normalize radius
+        g_shapesList.push(circle);
+    }
+
+    // Render all shapes
+    renderAllShapes();
+}
+
+
+
+
 
 function main() {
     setupWebGL();
