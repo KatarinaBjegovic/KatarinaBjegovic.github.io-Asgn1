@@ -10,7 +10,7 @@ var FSHADER_SOURCE = `
     precision mediump float;
     uniform vec4 u_FragColor;
     void main() {
-        gl_FragColor =  u_FragColor;
+        gl_FragColor = u_FragColor;
     }`
 
 
@@ -101,6 +101,18 @@ function drawAllTriangles() {
         [330, 210, 350, 210, 330, 350],
         [330, 350, 350, 350, 350, 210]
     ]; 
+    //black triangles
+    // let triangles_black = [
+    //     [170, 40, 130, 100, 220, 100],
+    //     [170, 90, 110, 200, 230, 200],
+    //     [170, 190, 90, 310, 250, 300],
+    //     [150, 310, 150, 370, 190, 310],
+    //     [190, 310, 190, 370, 150, 370],
+    //     [290, 210, 290, 350, 310, 210],
+    //     [310, 210, 310, 350, 290, 350],
+    //     [330, 210, 350, 210, 330, 350],
+    //     [330, 350, 350, 350, 350, 210]
+    // ]; 
 
     gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
 
@@ -109,8 +121,8 @@ function drawAllTriangles() {
     for (let i = 0; i < triangles.length; i++) {
         console.log("Drawing triangle ", i + 1, " with vertices: ", triangles[i]);
         let t = triangles[i];
-        console.log("Drawing triangle ", i + 1, " with vertices: ", t[0]+200);
-        drawTriangle([t[0], t[1], t[2], t[3], t[4], t[5]]);
+        console.log("Drawing triangle ", i + 1, " with vertices: ", t[0]);
+        drawTriangle([t[0]/400, t[1]/400, t[2]/400, t[3]/400, t[4]/400, t[5]/400]);
         //drawTriangle([(t[0] + 200)/200, (-1*t[1]+200)/200, (t[2]+200)/200, (-1*t[3]+200)/200, (t[4]+200)/200, (-1*t[5]+200)/200]);
     }
 }
