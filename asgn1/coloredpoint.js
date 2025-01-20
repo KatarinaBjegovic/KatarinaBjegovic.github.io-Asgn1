@@ -193,7 +193,7 @@ function addActionsForHTMLUI(){
     document.getElementById('pix_spring').onclick = SpringPage;
 
     document.getElementById('save').onclick = function() {g_shapesList_SAVED = g_shapesList; };
-    document.getElementById('view').onclick = function() {g_shapesList = []; renderSavedShapes(); g_shapesList =  g_shapesList_SAVED; };
+    document.getElementById('view').onclick = function() {g_shapesList = []; renderSavedShapes(); };
 
 
 }
@@ -319,6 +319,13 @@ function SpringPage() {
     g_shapesList=[]; 
     renderAllShapes();
 
+    let c_coord = [center_circle[0]/200, center_circle[1]/200, center_circle[2]/200];
+    let center = new Circle();
+    center.position = c_coord;
+    center.size = 55.0;
+    center.color = [1.0,1.0,1.0,1.0];
+    center.segments = 20;
+    g_shapesList.push(center);
 
     for (let i = 0; i < big_circles.length; i++) {
         let c_coord = big_circles[i];
@@ -383,16 +390,10 @@ function SpringPage() {
     }
 
     
-    let c_coord = [center_circle[0]/200, center_circle[1]/200, center_circle[2]/200];
-    let center = new Circle();
-    center.position = c_coord;
-    center.size = 40.0;
-    center.color = [1.0,1.0,1.0,1.0];
-    center.segments = 20;
-    g_shapesList.push(center);
+
     let center_black = new Circle();
     center_black.position = c_coord;
-    center_black.size = 35.0;
+    center_black.size = 48.0;
     center_black.color = [0.0,0.0,0.0,1.0];
     center_black.segments = 20;
     g_shapesList.push(center_black);
