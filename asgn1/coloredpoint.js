@@ -97,8 +97,7 @@ function drawAllTriangles() {
     for (let i = 0; i < triangles.length; i++) {
         console.log("Drawing triangle ", i + 1, " with vertices: ", triangles[i]);
         let t = triangles[i];
-        drawTriangle([t[0]/200, t[1]/200, t[2]/200, t[3]/200, t[4]/200, t[5]/200]);
-
+        drawTriangle([t[0] + 200, -1*t[1]+200, t[2]+200, -1*t[3]+200, t[4]+200, -1*t[5]+200]);
     }
 }
 
