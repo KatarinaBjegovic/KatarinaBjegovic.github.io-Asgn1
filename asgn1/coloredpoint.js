@@ -193,7 +193,8 @@ function addActionsForHTMLUI(){
     document.getElementById('pix_spring').onclick = SpringPage;
 
     document.getElementById('save').onclick = function() {g_shapesList_SAVED = g_shapesList; };
-    document.getElementById('view').onclick = function() {g_shapesList = []; renderAllShapes(); g_shapesList = g_shapesList_SAVED; renderAllShapes();};
+    document.getElementById('view').onclick = function() {g_shapesList = []; renderAllShapes(); };
+    //g_shapesList = g_shapesList_SAVED; renderAllShapes();
 
 
 }
@@ -307,6 +308,10 @@ function SpringPage() {
     ];
 
     gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
+    g_shapesList=[]; 
+    renderAllShapes();
+
+
     for (let i = 0; i < big_circles.length; i++) {
         let c_coord = big_circles[i];
         c_coord = [c_coord[0]/200, c_coord[1]/200, c_coord[2]/200];
@@ -363,7 +368,7 @@ function SpringPage() {
         c_coord = [c_coord[0]/200, c_coord[1]/200, c_coord[2]/200];
         let circ_black = new Circle();
         circ_black.position = c_coord;
-        circ_black.size = 10.0;
+        circ_black.size = 15.0;
         circ_black.color = [0.0,0.0,0.0,1.0];
         circ_black.segments = 20;
         g_shapesList.push(circ_black);
@@ -441,6 +446,9 @@ function WinterPage() {
     
 
     gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
+    g_shapesList=[]; 
+    renderAllShapes();
+
 
     for (let i = 0; i < triangles.length; i++) {
         let t_coord = triangles[i];
