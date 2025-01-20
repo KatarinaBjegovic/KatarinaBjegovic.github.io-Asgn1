@@ -102,6 +102,16 @@ function drawAllTriangles() {
         [155, -5, 145, -135, 155, -135] // ski 2 R
     ]; 
 
+    let circles = [
+        [-10,110,0],
+        [10,70,0],
+        [-10,30,0],
+        [-50,-90,0],
+        [30,-70,0],
+        [10,-30,0],
+        [-10,-50,0]
+    ]
+
     gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
 
 
@@ -119,18 +129,8 @@ function drawAllTriangles() {
         let black_tri = new HardTriangle();
         black_tri.coors = t_coord;
         black_tri.color = [0.0,0.0,0.0,1.0];
-        g_shapesList.push(white_tri);
+        g_shapesList.push(black_tri);
     }
-
-    let circles = [
-        [-10,110,0],
-        [10,70,0],
-        [-10,30,0],
-        [-50,-90,0],
-        [30,-70,0],
-        [10,-30,0],
-        [-10,-50,0]
-    ]
 
     gl.uniform4f(u_FragColor, 0.0, 0.0, 0.0, 1.0);
     for (let i = 0; i < circles.length; i++) {
