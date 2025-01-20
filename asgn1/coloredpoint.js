@@ -84,13 +84,31 @@ function drawAllTriangles() {
         [0, 20, -80, -80, 80, -80], //bottom tree
 
         [-20, -80, 20, -80, -20, -140], //L stump
-        [50, 200, -50, -350, 50, -350], // R stump
+        [20, -80, -20, -140, 20, -140], // R stump
 
         [100, 0, 120, 0, 100, -140], // ski 1 L
         [120, 0, 100, -140, 120, -140], // ski 1 R
         [140, 0, 160, 0, 140, -140], // ski 2 R
         [160, 0, 140, -140, 160, -140] // ski 2 R
     ]; 
+    let black_triangles = [
+        [0, 130, -30, 90, 30, 90], // top tree
+        [0, 90, -50, 10, 50, 10], // mid tree 
+        [0, 10, -70, -70, 70, -70], //bottom tree
+
+        // [-20, -80, 20, -80, -20, -140], //L stump
+        // [50, 200, -50, -350, 50, -350], // R stump
+
+        // [100, 0, 120, 0, 100, -140], // ski 1 L
+        // [120, 0, 100, -140, 120, -140], // ski 1 R
+        // [140, 0, 160, 0, 140, -140], // ski 2 R
+        // [160, 0, 140, -140, 160, -140] // ski 2 R
+    ]; 
+
+
+
+
+
     //white triangles
     // let triangles = [
     //     [170, 40, 130, 100, 220, 100],
@@ -125,7 +143,13 @@ function drawAllTriangles() {
         console.log("Drawing triangle ", i + 1, " with vertices: ", triangles[i]);
         let t = triangles[i];
         console.log("Drawing triangle ", i + 1, " with vertices: ", t[0]);
-        drawTriangle([t[0]/400, t[1]/400, t[2]/400, t[3]/400, t[4]/400, t[5]/400]);
+        drawTriangle([t[0]/200, t[1]/200, t[2]/200, t[3]/200, t[4]/200, t[5]/200]);
+        //drawTriangle([(t[0] + 200)/200, (-1*t[1]+200)/200, (t[2]+200)/200, (-1*t[3]+200)/200, (t[4]+200)/200, (-1*t[5]+200)/200]);
+    }
+    gl.uniform4f(u_FragColor, 0.0, 0.0, 0.0, 1.0);
+    for (let i = 0; i < triangles.length; i++) {
+        let t = black_triangles[i];
+        drawTriangle([t[0]/200, t[1]/200, t[2]/200, t[3]/200, t[4]/200, t[5]/200]);
         //drawTriangle([(t[0] + 200)/200, (-1*t[1]+200)/200, (t[2]+200)/200, (-1*t[3]+200)/200, (t[4]+200)/200, (-1*t[5]+200)/200]);
     }
 }
