@@ -265,50 +265,77 @@ function click(ev ) {
 
 function SpringPage() {
     let center_circle = [0,0,0]; // size 40
-    let mid_circle = [
-        [-60,40,0],
-        [0,60,0],
-        [60,20,0],
-        [40,-60,0],
-        [-60,-40,0],
+    let mid_circle = [ // size = 20
+        [-60,-20,0],
+        [0,-60,0],
+        [60,-20,0],
+        [40,40,0],
+        [-20,60,0],
     ];
 
-    let small_circles = [
-        [-70,70,0],
-        [-90,30, 0],
-        [-90,-30,0],
-        [-50,-70,0],
-        [30,-70,0],
-        [70,-30,0],
-        [50,50,0],
-        [90,10,0],
-        [30,80,0],
-        [-30,80,0]
+    let small_circles = [ // 10
+        [-50,-50,0],
+        [-90,-10, 0],
+        [-30,-80,0],
+        [30,-80,0],
+        [50,-50,0],
+        [90,-10,0],
+        [70,30,0],
+        [30,70,0],
+        [10,90,0],
+        [-50,50,0]
     ];
 
-    let big_circles = [
-        [0,120,0],
-        [100,60,0],
-        [-120,80,0],
-        [-100,-80,0],
-        [80,-80,0]
-    ]
+    let big_circles = [ // 60
+        [120,-80,0],
+        [0,-140,0],
+        [120,-80,0],
+        [-80,120,0],
+        [100,100,0]
+    ];
+
+    let fixers = [ //20
+        [-80,-40,0],
+        [0,-80,0],
+        [80,-40,0],
+        [60,60,0],
+        [-40,80]
+    ];
 
     gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
+    for (let i = 0; i < big_circles.length; i++) {
+        let c_coord = big_circles[i];
+        c_coord = [c_coord[0]/200, c_coord[1]/200, c_coord[2]/200];
+        let circ = new Circle();
+        circ.position = c_coord;
+        circ.size = 60.0;
+        circ.color = [1.0,1.0,1.0,1.0];
+        circ.segments = 20;
+        g_shapesList.push(circ);
+        let circ_black = new Circle();
+        circ_black.position = c_coord;
+        circ_black.size = 55.0;
+        circ_black.color = [0.0,0.0,0.0,1.0];
+        circ_black.segments = 20;
+        g_shapesList.push(circ_black);
+    }
 
-    let c_coord = [center_circle[0]/200, center_circle[1]/200, center_circle[2]/200];
-    let center = new Circle();
-    center.position = c_coord;
-    center.size = 40.0;
-    center.color = [1.0,1.0,1.0,1.0];
-    center.segments = 20;
-    g_shapesList.push(center);
-    let center_black = new Circle();
-    center_black.position = c_coord;
-    center_black.size = 35.0;
-    center_black.color = [0.0,0.0,0.0,1.0];
-    center_black.segments = 20;
-    g_shapesList.push(center_black);
+    for (let i = 0; i < mid_circle.length; i++) {
+        let c_coord = mid_circle[i];
+        c_coord = [c_coord[0]/200, c_coord[1]/200, c_coord[2]/200];
+        let circ = new Circle();
+        circ.position = c_coord;
+        circ.size = 20.0;
+        circ.color = [1.0,1.0,1.0,1.0];
+        circ.segments = 20;
+        g_shapesList.push(circ);
+        let circ_black = new Circle();
+        circ_black.position = c_coord;
+        circ_black.size = 15.0;
+        circ_black.color = [0.0,0.0,0.0,1.0];
+        circ_black.segments = 20;
+        g_shapesList.push(circ_black);
+    }
 
     for (let i = 0; i < small_circles.length; i++) {
         let c_coord = small_circles[i];
@@ -327,39 +354,32 @@ function SpringPage() {
         g_shapesList.push(circ_black);
     }
 
-    for (let i = 0; i < mid_circle.length; i++) {
-        let c_coord = mid_circle[i];
+    for (let i = 0; i < fixers.length; i++) {
+        let c_coord = fixers[i];
         c_coord = [c_coord[0]/200, c_coord[1]/200, c_coord[2]/200];
-        let circ = new Circle();
-        circ.position = c_coord;
-        circ.size = 30.0;
-        circ.color = [1.0,1.0,1.0,1.0];
-        circ.segments = 20;
-        g_shapesList.push(circ);
         let circ_black = new Circle();
         circ_black.position = c_coord;
-        circ_black.size = 25.0;
+        circ_black.size = 22.0;
         circ_black.color = [0.0,0.0,0.0,1.0];
         circ_black.segments = 20;
         g_shapesList.push(circ_black);
     }
 
-    for (let i = 0; i < big_circles.length; i++) {
-        let c_coord = big_circles[i];
-        c_coord = [c_coord[0]/200, c_coord[1]/200, c_coord[2]/200];
-        let circ = new Circle();
-        circ.position = c_coord;
-        circ.size = 60.0;
-        circ.color = [1.0,1.0,1.0,1.0];
-        circ.segments = 20;
-        g_shapesList.push(circ);
-        let circ_black = new Circle();
-        circ_black.position = c_coord;
-        circ_black.size = 50.0;
-        circ_black.color = [0.0,0.0,0.0,1.0];
-        circ_black.segments = 20;
-        g_shapesList.push(circ_black);
-    }
+    
+    let c_coord = [center_circle[0]/200, center_circle[1]/200, center_circle[2]/200];
+    let center = new Circle();
+    center.position = c_coord;
+    center.size = 40.0;
+    center.color = [1.0,1.0,1.0,1.0];
+    center.segments = 20;
+    g_shapesList.push(center);
+    let center_black = new Circle();
+    center_black.position = c_coord;
+    center_black.size = 35.0;
+    center_black.color = [0.0,0.0,0.0,1.0];
+    center_black.segments = 20;
+    g_shapesList.push(center_black);
+    
     renderAllShapes();
 }
 
