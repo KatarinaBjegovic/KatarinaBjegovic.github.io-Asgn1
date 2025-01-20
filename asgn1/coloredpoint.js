@@ -193,8 +193,7 @@ function addActionsForHTMLUI(){
     document.getElementById('pix_spring').onclick = SpringPage;
 
     document.getElementById('save').onclick = function() {g_shapesList_SAVED = g_shapesList; };
-    document.getElementById('view').onclick = function() {g_shapesList = []; renderAllShapes(); };
-    //g_shapesList = g_shapesList_SAVED; renderAllShapes();
+    document.getElementById('view').onclick = function() {g_shapesList = []; renderSavedShapes();};
 
 
 }
@@ -232,6 +231,15 @@ function renderAllShapes(){
 
     for (var i = 0; i < len; i++) {
         g_shapesList[i].render();
+    }
+}
+
+function renderSavedShapes(){
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    var len = g_shapesList_SAVED.length;
+
+    for (var i = 0; i < len; i++) {
+        g_shapesList_SAVED[i].render();
     }
 }
 
@@ -292,11 +300,11 @@ function SpringPage() {
     ];
 
     let big_circles = [ // 60
-        [120,-80,0],
-        [0,-140,0],
-        [-120,-80,0],
-        [-80,120,0],
-        [100,100,0]
+        [100,-60,0],
+        [0,-120,0],
+        [-100,-60,0],
+        [-60,100,0],
+        [80,80,0]
     ];
 
     let fixers = [ //20
@@ -317,7 +325,7 @@ function SpringPage() {
         c_coord = [c_coord[0]/200, c_coord[1]/200, c_coord[2]/200];
         let circ = new Circle();
         circ.position = c_coord;
-        circ.size = 60.0;
+        circ.size = 50.0;
         circ.color = [1.0,1.0,1.0,1.0];
         circ.segments = 20;
         g_shapesList.push(circ);
