@@ -193,7 +193,7 @@ function addActionsForHTMLUI(){
     document.getElementById('pix_spring').onclick = SpringPage;
 
     document.getElementById('save').onclick = function() {g_shapesList_SAVED = g_shapesList; };
-    document.getElementById('view').onclick = function() {g_shapesList = []; renderSavedShapes(); };
+    document.getElementById('view').onclick = function() {g_shapesList = []; renderSavedShapes(); g_shapesList = g_shapesList_SAVED.slice(); };
 
 
 }
@@ -292,8 +292,8 @@ function SpringPage() {
         [60,-40,0],
         [80,-20,0],
 
-        [20,-80,0],
-        [-20,-80,0],
+        [20,-75,0],
+        [-20,-75,0],
 
         [-60,-40,0],
         [-80,-20,0]
@@ -393,7 +393,7 @@ function SpringPage() {
 
     let center_black = new Circle();
     center_black.position = c_coord;
-    center_black.size = 48.0;
+    center_black.size = 50.0;
     center_black.color = [0.0,0.0,0.0,1.0];
     center_black.segments = 20;
     g_shapesList.push(center_black);
