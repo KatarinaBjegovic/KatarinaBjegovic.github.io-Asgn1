@@ -192,8 +192,8 @@ function addActionsForHTMLUI(){
     document.getElementById('pix_winter').onclick = WinterPage;
     document.getElementById('pix_spring').onclick = SpringPage;
 
-    document.getElementById('save').onclick = function() {g_shapesList_SAVED = g_shapesList;};
-    document.getElementById('view').onclick = function() {g_shapesList = g_shapesList_SAVED; renderAllShapes();};
+    document.getElementById('save').onclick = function() {g_shapesList_SAVED = g_shapesList; };
+    document.getElementById('view').onclick = function() {g_shapesList = []; g_shapesList = g_shapesList_SAVED; renderAllShapes();};
 
 
 }
