@@ -307,7 +307,7 @@ function WinterPage() {
     let triangles = [
         [-50, 140, -90, 80, -10, 80], // top tree
         [-50, 100, -110, 0, 10, 0], // mid tree 
-        [-50, 20, -170, -80, 30, -80], //bottom tree
+        [-50, 20, -120, -80, 30, -80], //bottom tree
 
         [-70, -80, -30, -80, -70, -140], //L stump
         [-30, -80, -70, -140, -30, -140], // R stump
@@ -325,8 +325,8 @@ function WinterPage() {
         [-65, -70, -35, -70, -65, -135], //L stump
         [-35, -70, -65, -135, -35, -135], // R stump
 
-        [55, -5, 15, -5, 5, -135], // ski 1 L
-        [65, -5, 05, -135, 15, -135], // ski 1 R
+        [55, -5, 65, -5, 55, -135], // ski 1 L
+        [65, -5, 55, -135, 65, -135], // ski 1 R
         [95, -5, 105, -5, 95, -135], // ski 2 L
         [105, -5, 95, -135, 105, -135] // ski 2 R
     ]; 
@@ -343,7 +343,7 @@ function WinterPage() {
         [0,70,0]
     ];
 
-    
+
     let ski_circles = [
         [60,0,0],
         [100,0,0]
@@ -373,13 +373,13 @@ function WinterPage() {
         c_coord = [c_coord[0]/150, c_coord[1]/150, c_coord[2]/150];
         let circ = new Circle();
         circ.position = c_coord;
-        circ.size = 10.0;
+        circ.size = 15.0;
         circ.color = [1.0,1.0,1.0,1.0];
         circ.segments = 20;
         g_shapesList.push(circ);
         let circ_black = new Circle();
         circ_black.position = c_coord;
-        circ_black.size = 5.0;
+        circ_black.size = 10.0;
         circ_black.color = [0.0,0.0,0.0,1.0];
         circ_black.segments = 20;
         g_shapesList.push(circ_black);
@@ -409,13 +409,13 @@ function WinterPage() {
         c_coord = [c_coord[0]/150, c_coord[1]/150, c_coord[2]/150];
         let circ = new Circle();
         circ.position = c_coord;
-        circ.size = 10.0;
+        circ.size = 15.0;
         circ.color = [1.0,1.0,1.0,1.0];
         circ.segments = 20;
         g_shapesList.push(circ);
         let circ_black = new Circle();
         circ_black.position = c_coord;
-        circ_black.size = 8.0;
+        circ_black.size = 10.0;
         circ_black.color = [0.0,0.0,0.0,1.0];
         circ_black.segments = 20;
         g_shapesList.push(circ_black);
