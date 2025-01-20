@@ -320,7 +320,7 @@ function WinterPage() {
     let black_triangles = [
         [-50, 130, -80, 85, -20, 85], // top tree
         [-50, 90, -100, 5, 0, 5], // mid tree 
-        [-50, 10, -120, -75, 20, -75], //bottom tree
+        [-50, 10, -110, -75, 20, -75], //bottom tree
 
         [-65, -70, -35, -70, -65, -135], //L stump
         [-35, -70, -65, -135, -35, -135], // R stump
@@ -338,9 +338,7 @@ function WinterPage() {
         [-20,-70,0],
         [-40,-30,0],
         [-60,-50,0],
-        [10,-10,0],
-        [-20,10,0],
-        [0,70,0]
+        [-20,10,0]
     ];
 
 
@@ -415,7 +413,7 @@ function WinterPage() {
         g_shapesList.push(circ);
         let circ_black = new Circle();
         circ_black.position = c_coord;
-        circ_black.size = 10.0;
+        circ_black.size = 12.0;
         circ_black.color = [0.0,0.0,0.0,1.0];
         circ_black.segments = 20;
         g_shapesList.push(circ_black);
