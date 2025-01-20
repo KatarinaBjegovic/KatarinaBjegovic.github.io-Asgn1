@@ -326,7 +326,7 @@ function WinterPage() {
         c_coord = [c_coord[0]/180, c_coord[1]/180, c_coord[2]/180];
         let circ = new Circle();
         circ.position = c_coord;
-        circ.size = 10.0;
+        circ.size = 20.0;
         circ.color = [1.0,1.0,1.0,1.0];
         circ.segments = 20;
         g_shapesList.push(circ);
