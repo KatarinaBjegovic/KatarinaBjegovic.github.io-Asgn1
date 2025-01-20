@@ -113,8 +113,8 @@ function drawAllTriangles() {
         white_tri.color = [1.0,1.0,1.0,1.0];
         g_shapesList.push(white_tri);
     }
-    for (let i = 0; i < triangles.length; i++) {
-        let t_coord = triangles[i];
+    for (let i = 0; i < black_triangles.length; i++) {
+        let t_coord = black_triangles[i];
         t_coord = [t[0]/200, t[1]/200, t[2]/200, t[3]/200, t[4]/200, t[5]/200];
         let black_tri = new HardTriangle();
         black_tri.coors = t_coord;
@@ -148,7 +148,6 @@ function drawAllTriangles() {
         circ_black.color = [0.0,0.0,0.0,1.0];
         circ_black.segments = 20;
         g_shapesList.push(circ_black);
-
     }
 
 
