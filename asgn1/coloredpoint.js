@@ -72,8 +72,8 @@ function drawAllTriangles(triangles) {
     gl.uniform4f(u_FragColor, 1.0, 1.0, 1.0, 1.0); // Set a default color for the triangles
 
     for (let i = 0; i < triangles.length; i++) {
-        let t = triangles[1]
-        drawTriangle(t[0]/200, t[1]/200, t[2]/200, t[3]/200, t[4]/200, t[5]/200);
+        let t = triangles[i];
+        drawTriangle([t[0]/200, t[1]/200, t[2]/200, t[3]/200, t[4]/200, t[5]/200]);
 
     }
 }
