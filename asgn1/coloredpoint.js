@@ -114,7 +114,6 @@ function drawAllTriangles() {
 
     gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
 
-
     for (let i = 0; i < triangles.length; i++) {
         let t_coord = triangles[i];
         t_coord = [t_coord[0]/200, t_coord[1]/200, t_coord[2]/200, t_coord[3]/200, t_coord[4]/200, t_coord[5]/200];
@@ -150,7 +149,7 @@ function drawAllTriangles() {
         g_shapesList.push(circ_black);
     }
 
-
+    renderAllShapes();
 
 
 
