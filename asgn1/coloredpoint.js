@@ -194,7 +194,7 @@ function addActionsForHTMLUI(){
     document.getElementById('triangle').onclick = function() {g_selectedType=TRIANGLE};
     document.getElementById('circle').onclick = function() {g_selectedType=CIRCLE};
 
-    document.getElementById('pix_winter').onclick = displayShapes;
+    document.getElementById('pix_winter').onclick = drawAllTriangles;
 
 }
 
