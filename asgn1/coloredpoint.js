@@ -122,7 +122,7 @@ function drawAllTriangles() {
         g_shapesList.push(white_tri);
     }
 
-    let white_circles = [
+    let circles = [
         [-10,110,0],
         [10,70,0],
         [-10,30,0],
@@ -134,7 +134,7 @@ function drawAllTriangles() {
 
     gl.uniform4f(u_FragColor, 0.0, 0.0, 0.0, 1.0);
     for (let i = 0; i < circles.length; i++) {
-        let c_coord = white_circles[i];
+        let c_coord = circles[i];
         c_coord = [t[0]/200, t[1]/200, t[2]/200];
         let circ = new Circle();
         circ.position = c_coord;
@@ -142,10 +142,13 @@ function drawAllTriangles() {
         circ.color = [1.0,0.0,0.0,1.0];
         circ.segments = 20;
         g_shapesList.push(circ);
+        let circ_black = new Circle();
+        circ_black.position = c_coord;
+        circ_black.size = 10.0;
+        circ_black.color = [0.0,0.0,0.0,1.0];
+        circ_black.segments = 20;
+        g_shapesList.push(circ_black);
 
-
-        //drawTriangle([t[0]/200, t[1]/200, t[2]/200, t[3]/200, t[4]/200, t[5]/200]);
-        //drawTriangle([(t[0] + 200)/200, (-1*t[1]+200)/200, (t[2]+200)/200, (-1*t[3]+200)/200, (t[4]+200)/200, (-1*t[5]+200)/200]);
     }
 
 
