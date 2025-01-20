@@ -293,32 +293,73 @@ function WinterPage() {
         [-70,-70,0],
         [-90,-30,0],
         [-110,-50,0],
+        [-40,-10,0],
+        [-70,10,0],
+        [-50,70,0]
+    ];
+    
+    let ski_circles = [
         [10,0,0],
         [50,0,0]
-    ];
+    ]
+
+    let buckles = [
+        [3, -45, 17, -45, 3, -95], // buckle 1 L
+        [17, -45, 3, -95, 17, -95], // buckle 1 R
+        [43, -45, 63, -45, 43, -95], // buckle 2 L
+        [63, -45, 43, -95, 63, -95] // buckle 2 R
+    ]
 
     gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
 
     for (let i = 0; i < triangles.length; i++) {
         let t_coord = triangles[i];
-        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        t_coord = [t_coord[0]/150, t_coord[1]/180, t_coord[2]/180, t_coord[3]/180, t_coord[4]/180, t_coord[5]/180];
         let white_tri = new HardTriangle();
         white_tri.coors = t_coord;
         white_tri.color = [1.0,1.0,1.0,1.0];
         g_shapesList.push(white_tri);
     }
+    
+    for (let i = 0; i < ski_circles.length; i++) {
+        let c_coord = ski_circles[i];
+        c_coord = [c_coord[0]/180, c_coord[1]/180, c_coord[2]/180];
+        let circ = new Circle();
+        circ.position = c_coord;
+        circ.size = 10.0;
+        circ.color = [1.0,1.0,1.0,1.0];
+        circ.segments = 20;
+        g_shapesList.push(circ);
+        let circ_black = new Circle();
+        circ_black.position = c_coord;
+        circ_black.size = 10.0;
+        circ_black.color = [0.0,0.0,0.0,1.0];
+        circ_black.segments = 20;
+        g_shapesList.push(circ_black);
+    }
+
     for (let i = 0; i < black_triangles.length; i++) {
         let t_coord = black_triangles[i];
-        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        t_coord = [t_coord[0]/150, t_coord[1]/180, t_coord[2]/180, t_coord[3]/180, t_coord[4]/180, t_coord[5]/180];
         let black_tri = new HardTriangle();
         black_tri.coors = t_coord;
         black_tri.color = [0.0,0.0,0.0,1.0];
         g_shapesList.push(black_tri);
     }
+
+    for (let i = 0; i < buckles.length; i++) {
+        let t_coord = buckles[i];
+        t_coord = [t_coord[0]/150, t_coord[1]/180, t_coord[2]/180, t_coord[3]/180, t_coord[4]/180, t_coord[5]/180];
+        let buckle = new HardTriangle();
+        buckle.coors = t_coord;
+        buckle.color = [1.0,1.0,1.0,1.0];
+        g_shapesList.push(buckle);
+    }
+
     gl.uniform4f(u_FragColor, 0.0, 0.0, 0.0, 1.0);
     for (let i = 0; i < circles.length; i++) {
         let c_coord = circles[i];
-        c_coord = [c_coord[0]/150, c_coord[1]/150, c_coord[2]/150];
+        c_coord = [c_coord[0]/180, c_coord[1]/180, c_coord[2]/180];
         let circ = new Circle();
         circ.position = c_coord;
         circ.size = 10.0;
