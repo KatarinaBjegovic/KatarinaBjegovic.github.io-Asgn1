@@ -107,7 +107,7 @@ function drawAllTriangles() {
 
     for (let i = 0; i < triangles.length; i++) {
         let t_coord = triangles[i];
-        t_coord = [t[0]/200, t[1]/200, t[2]/200, t[3]/200, t[4]/200, t[5]/200];
+        t_coord = [t_coord[0]/200, t_coord[1]/200, t_coord[2]/200, t_coord[3]/200, t_coord[4]/200, t_coord[5]/200];
         let white_tri = new HardTriangle();
         white_tri.coors = t_coord;
         white_tri.color = [1.0,1.0,1.0,1.0];
@@ -115,7 +115,7 @@ function drawAllTriangles() {
     }
     for (let i = 0; i < black_triangles.length; i++) {
         let t_coord = black_triangles[i];
-        t_coord = [t[0]/200, t[1]/200, t[2]/200, t[3]/200, t[4]/200, t[5]/200];
+        t_coord = [t_coord[0]/200, t_coord[1]/200, t_coord[2]/200, t_coord[3]/200, t_coord[4]/200, t_coord[5]/200];
         let black_tri = new HardTriangle();
         black_tri.coors = t_coord;
         black_tri.color = [0.0,0.0,0.0,1.0];
@@ -135,7 +135,7 @@ function drawAllTriangles() {
     gl.uniform4f(u_FragColor, 0.0, 0.0, 0.0, 1.0);
     for (let i = 0; i < circles.length; i++) {
         let c_coord = circles[i];
-        c_coord = [t[0]/200, t[1]/200, t[2]/200];
+        c_coord = [c_coord[0]/200, c_coord[1]/200, c_coord[2]/200];
         let circ = new Circle();
         circ.position = c_coord;
         circ.size = 20.0;
