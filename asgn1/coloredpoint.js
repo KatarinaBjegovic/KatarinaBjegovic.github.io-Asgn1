@@ -101,7 +101,6 @@ function drawAllTriangles() {
         [145, -5, 155, -5, 145, -135], // ski 2 L
         [155, -5, 145, -135, 155, -135] // ski 2 R
     ]; 
-
     let circles = [
         [-10,110,0],
         [10,70,0],
@@ -110,7 +109,7 @@ function drawAllTriangles() {
         [30,-70,0],
         [10,-30,0],
         [-10,-50,0]
-    ]
+    ];
 
     gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
 
