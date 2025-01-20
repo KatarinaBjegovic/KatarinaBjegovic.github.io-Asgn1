@@ -66,12 +66,46 @@ function drawTriangle(verticies){
 
 }
 
+
+// class HardTriangle{
+//     constructor(){
+//         this.type = 'hardtriangle';
+//         this.coors = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+//         this.color = [1.0,1.0,1.0,1.0];
+//     }
+//     render() {
+//         var rgba = this.color;
+//         //gl.vertexAttrib3f(a_position, xy[0], xy[1], 0.0);
+//         gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
+//         gl.uniform1f(u_size, size);
+
+//         drawTriangle(this.coors); 
+//     }
+// }
+
+
+
 function drawAllTriangles(triangles) {
+    console.log("Drawing Triangle with vertices: ", verticies);
+
+    verticies: const triangles = [
+        [0, 300, -80, 200, 80, 200],
+        [-100, 0, 100, 0, 0, 200],
+        [0, 50, -150, -200, 150, -200],
+        [-50, 200, -50, -350, 50, 200],
+        [50, 200, -50, -350, 50, -350],
+        [230, -150, 270, -150, 200, -350],
+        [240, -350, 200, -350, 270, -150],
+        [320, -150, 290, -350, 360, -150],
+        [360, -150, 330, -350, 290, -350]
+    ]; 
+    
     gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
 
     gl.uniform4f(u_FragColor, 1.0, 1.0, 1.0, 1.0); // Set a default color for the triangles
 
     for (let i = 0; i < triangles.length; i++) {
+        console.log("Drawing triangle ", i + 1, " with vertices: ", triangles[i]);
         let t = triangles[i];
         drawTriangle([t[0]/200, t[1]/200, t[2]/200, t[3]/200, t[4]/200, t[5]/200]);
 
@@ -233,6 +267,9 @@ function renderAllShapes(){
         g_shapesList[i].render();
     }
 }
+
+
+
 
 function click(ev ) {
     [x,y] = convertCoordinatesEventToGL(ev);
