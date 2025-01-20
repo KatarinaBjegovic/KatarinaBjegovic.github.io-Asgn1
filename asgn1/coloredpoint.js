@@ -274,16 +274,20 @@ function SpringPage() {
     ];
 
     let small_circles = [ // 10
-        [-50,-50,0],
-        [-90,-10, 0],
-        [-30,-80,0],
-        [30,-80,0],
-        [50,-50,0],
-        [90,-10,0],
-        [70,30,0],
-        [30,70,0],
-        [10,90,0],
-        [-50,50,0]
+        [-40,60,0],
+        [-20,80, 0],
+
+        [40,60,0],
+        [60,40,0],
+
+        [60,-40,0],
+        [80,-20,0],
+
+        [20,-80,0],
+        [-20,-80,0],
+        
+        [-60,-40,0],
+        [-80,-20,0]
     ];
 
     let big_circles = [ // 60
@@ -359,7 +363,7 @@ function SpringPage() {
         c_coord = [c_coord[0]/200, c_coord[1]/200, c_coord[2]/200];
         let circ_black = new Circle();
         circ_black.position = c_coord;
-        circ_black.size = 22.0;
+        circ_black.size = 20.0;
         circ_black.color = [0.0,0.0,0.0,1.0];
         circ_black.segments = 20;
         g_shapesList.push(circ_black);
