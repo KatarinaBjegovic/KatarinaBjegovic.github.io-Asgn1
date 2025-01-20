@@ -88,7 +88,7 @@ function drawTriangle(verticies){
 function drawAllTriangles(triangles) {
     console.log("Drawing Triangle with vertices: ", verticies);
 
-    verticies: const triangles = [
+    const triangles = [
         [0, 300, -80, 200, 80, 200],
         [-100, 0, 100, 0, 0, 200],
         [0, 50, -150, -200, 150, -200],
@@ -99,7 +99,7 @@ function drawAllTriangles(triangles) {
         [320, -150, 290, -350, 360, -150],
         [360, -150, 330, -350, 290, -350]
     ]; 
-    
+
     gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
 
     gl.uniform4f(u_FragColor, 1.0, 1.0, 1.0, 1.0); // Set a default color for the triangles
