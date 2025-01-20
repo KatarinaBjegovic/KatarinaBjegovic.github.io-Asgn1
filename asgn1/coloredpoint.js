@@ -51,19 +51,11 @@ function drawTriangle(verticies){
 
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticies), gl.DYNAMIC_DRAW);
 
-    // var a_position = gl.getAttribLocation(gl.program, 'a_position');
-    // if (a_position < 0) {
-    //     console.log('Failed to get the storage location of a_position');
-    //     return -1;
-    // }
-
     gl.vertexAttribPointer(a_position, 2, gl.FLOAT, false, 0,0);
 
     gl.enableVertexAttribArray(a_position);
 
     gl.drawArrays(gl.TRIANGLES, 0, n);
-
-
 }
 
 
@@ -85,10 +77,8 @@ function drawTriangle(verticies){
 
 
 
-function drawAllTriangles(triangles) {
-    console.log("Drawing Triangle with vertices: ", verticies);
-
-    const triangles = [
+function drawAllTriangles() {
+    let triangles = [
         [0, 300, -80, 200, 80, 200],
         [-100, 0, 100, 0, 0, 200],
         [0, 50, -150, -200, 150, -200],
@@ -168,7 +158,8 @@ class Circle{
 
 const SQUARE = 0;
 const TRIANGLE = 1;
-const CIRCLE = 2
+const CIRCLE = 2;
+//const HARDTRI = 3;
     // make global either stuff that needs to be passed to shaders or user interfasce elements
 let canvas;
 let gl;
@@ -280,9 +271,11 @@ function click(ev ) {
         point.segments = g_selectedSegments;
     } else if (g_selectedType==TRIANGLE) {
         point = new Triangle();
-    } else {
+    } // else if (g_selectedType==HARDTRI) { point = new HardTri(); }
+    else {
         point = new Point();
     }
+
 
     point.position = [x,y];
     point.color = g_selectedColor.slice();
