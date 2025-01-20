@@ -1,4 +1,3 @@
-
 var VSHADER_SOURCE = `
     attribute vec4 a_position;
     uniform float u_size; 
@@ -66,6 +65,19 @@ function drawTriangle(verticies){
 
 
 }
+
+function drawAllTriangles(triangles) {
+    gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
+
+    gl.uniform4f(u_FragColor, 1.0, 1.0, 1.0, 1.0); // Set a default color for the triangles
+
+    for (let i = 0; i < triangles.length; i++) {
+        let t = triangles[1]
+        drawTriangle(t[0]/200, t[1]/200, t[2]/200, t[3]/200, t[4]/200, t[5]/200);
+
+    }
+}
+
 
 class Triangle{
     constructor(){
@@ -185,45 +197,6 @@ function addActionsForHTMLUI(){
     document.getElementById('pix_winter').onclick = displayShapes;
 
 }
-
-function displayShapes(){
-    g_shapesList = [];
-    const triangles = [
-        [0, 300, -80, 200, 80, 200],
-        [-100, 0, 100, 0, 0, 200],
-        [0, 50, -150, -200, 150, -200],
-        [-50, 200, -50, -350, 50, 200],
-        [50, 200, -50, -350, 50, -350],
-        [230, -150, 270, -150, 200, -350],
-        [240, -350, 200, -350, 270, -150],
-        [320, -150, 290, -350, 360, -150],
-        [360, -150, 330, -350, 290, -350]
-    ];
-    for (let t of triangles) {
-        const triangle = new Triangle();
-        triangle.color = [1.0, 1.0, 1.0, 1.0]; // Set color to white
-        triangle.position = [0, 0];
-        drawTriangle(t.map(coord => coord / 400)); // Normalize to WebGL space
-    }
-
-    const circles = [
-        { x: 340, y: -150, r: 20 },
-        { x: 250, y: -150, r: 20 }
-    ];
-
-    
-    for (let c of circles) {
-        const circle = new Circle();
-        circle.color = [1.0, 1.0, 1.0, 1.0]; // Set color to white
-        circle.position = [c.x / 400, c.y / 400]; // Normalize to WebGL space
-        circle.size = c.r / 400; // Normalize radius
-        g_shapesList.push(circle);
-    }
-
-    // Render all shapes
-    renderAllShapes();
-}
-
 
 
 
