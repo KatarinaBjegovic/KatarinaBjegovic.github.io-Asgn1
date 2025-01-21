@@ -322,7 +322,7 @@ function SummerPage() {
 
     for (let i = 0; i < axis_tri.length; i++) {
         let t_coord = axis_tri[i];
-        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        t_coord = [t_coord[0]/200, t_coord[1]/200, t_coord[2]/200, t_coord[3]/200, t_coord[4]/200, t_coord[5]/200];
         let white_tri = new HardTriangle();
         white_tri.coors = t_coord;
         white_tri.color = [1.0,1.0,1.0,1.0];
@@ -331,16 +331,16 @@ function SummerPage() {
 
     for (let i = 0; i < axis_tri_black.length; i++) {
         let t_coord = axis_tri_black[i];
-        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        t_coord = [t_coord[0]/200, t_coord[1]/200, t_coord[2]/200, t_coord[3]/200, t_coord[4]/200, t_coord[5]/200];
         let white_tri = new HardTriangle();
         white_tri.coors = t_coord;
-        white_tri.color = [1.0,1.0,1.0,1.0];
+        white_tri.color = [0.0,0.0,0.0,1.0];
         g_shapesList.push(white_tri);
     }
 
     for (let i = 0; i < other_tri.length; i++) {
         let t_coord = other_tri[i];
-        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        t_coord = [t_coord[0]/200, t_coord[1]/200, t_coord[2]/200, t_coord[3]/200, t_coord[4]/200, t_coord[5]/200];
         let white_tri = new HardTriangle();
         white_tri.coors = t_coord;
         white_tri.color = [1.0,1.0,1.0,1.0];
@@ -352,7 +352,7 @@ function SummerPage() {
         t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
         let white_tri = new HardTriangle();
         white_tri.coors = t_coord;
-        white_tri.color = [1.0,1.0,1.0,1.0];
+        white_tri.color = [0.0,0.0,0.0,1.0];
         g_shapesList.push(white_tri);
     }
 
