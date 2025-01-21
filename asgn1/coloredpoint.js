@@ -191,6 +191,7 @@ function addActionsForHTMLUI(){
 
     document.getElementById('pix_winter').onclick = WinterPage;
     document.getElementById('pix_spring').onclick = SpringPage;
+    document.getElementById('pix_spring').onclick = SummerPage;
 
     document.getElementById('save').onclick = function() {g_shapesList_SAVED = g_shapesList; };
     document.getElementById('view').onclick = function() {g_shapesList = []; renderSavedShapes(); g_shapesList = g_shapesList_SAVED.slice(); };
@@ -269,6 +270,96 @@ function click(ev ) {
     renderAllShapes();
 }
 
+
+function SummerPage() {
+    let center_circle = [0,0,0]; // size 100
+    
+
+    let axis_tri = [ 
+        [-180, 0, -120,-20, -120, 20],
+        [0, 180, -20, 120, 20, 120],
+        [0, -180, -20, -120, 20, -120],
+        [180, 0, 120, -20, 120, 20]
+    ];
+    let axis_tri_black = [ 
+        [-160, 0, -130, -10, -130, 10],
+        [0, 160, -10, 130, 10, 130],
+        [0, -160, -10, -130, 10, -130],
+        [160, 0, 130, -10, 130, 10]
+    ];
+
+    let other_tri = [ 
+        [-100, 60, -120, 120, -60, 100],
+        [-100, -60, -120, -120, -60, -100],
+        [100, 60, 120, 120, 60, 100],
+        [100, -60, 120, -120, 60, -100]
+    ];
+
+    let other_tri_black = [ 
+        [-100, 80, -100, 100, -80, 100],
+        [-100, -80, -100, -100, -80, -100],
+        [100, 80, 100, 100, 80, 100],
+        [100, -80, 100, -100, 80, -100]
+    ];
+
+    gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
+    g_shapesList=[]; 
+    renderAllShapes();
+
+    let c_coord = [center_circle[0]/200, center_circle[1]/200, center_circle[2]/200];
+    let center = new Circle();
+    center.position = c_coord;
+    center.size = 100.0;
+    center.color = [1.0,1.0,1.0,1.0];
+    center.segments = 20;
+    g_shapesList.push(center);
+    let center_black = new Circle();
+    center_black.position = c_coord;
+    center_black.size = 100.0;
+    center_black.color = [0.0,0.0,0.0,0.0];
+    center_black.segments = 20;
+    g_shapesList.push(center);
+
+    for (let i = 0; i < axis_tri.length; i++) {
+        let t_coord = axis_tri[i];
+        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        let white_tri = new HardTriangle();
+        white_tri.coors = t_coord;
+        white_tri.color = [1.0,1.0,1.0,1.0];
+        g_shapesList.push(white_tri);
+    }
+
+    for (let i = 0; i < axis_tri_black.length; i++) {
+        let t_coord = axis_tri_black[i];
+        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        let white_tri = new HardTriangle();
+        white_tri.coors = t_coord;
+        white_tri.color = [1.0,1.0,1.0,1.0];
+        g_shapesList.push(white_tri);
+    }
+
+    for (let i = 0; i < other_tri.length; i++) {
+        let t_coord = other_tri[i];
+        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        let white_tri = new HardTriangle();
+        white_tri.coors = t_coord;
+        white_tri.color = [1.0,1.0,1.0,1.0];
+        g_shapesList.push(white_tri);
+    }
+
+    for (let i = 0; i < other_tri_black.length; i++) {
+        let t_coord = other_tri_black[i];
+        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        let white_tri = new HardTriangle();
+        white_tri.coors = t_coord;
+        white_tri.color = [1.0,1.0,1.0,1.0];
+        g_shapesList.push(white_tri);
+    }
+
+
+    renderAllShapes();
+}
+
  
 
 
@@ -292,8 +383,8 @@ function SpringPage() {
         [60,-40,0],
         [80,-20,0],
 
-        [20,-75,0],
-        [-20,-75,0],
+        [15,-75,0],
+        [-15,-75,0],
 
         [-60,-40,0],
         [-80,-20,0]
