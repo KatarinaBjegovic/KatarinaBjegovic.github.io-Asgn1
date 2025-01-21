@@ -274,11 +274,11 @@ function click(ev ) {
 
 
 function FallPage() {
-    let L_circle = [-20,0,0]; // size 120
-    let R_circle = [80,0,0]; // size 120
+    let L_circle = [-40,0,0]; // size 120
+    let R_circle = [60,0,0]; // size 120
 
     let branch = [20,100, 0, 180, 40, 160];
-    let branch_black = [25, 120, 5, 175, 35, 155];
+    let branch_black = [20, 115, 5, 175, 35, 155];
 
     let tri =[
         [-80, 0, -40, 80, 0, 0],
@@ -286,8 +286,8 @@ function FallPage() {
         branch
     ];
     let tri_black =[
-        [-60, 20, -40, 60, -20, 20],
-        [60, 20, 100, 20 , 80, 60], 
+        [-60, 10, -40, 70, -20, 10],
+        [60, 10, 100, 10 , 80, 70], 
         branch_black
     ];
 
@@ -313,7 +313,7 @@ function FallPage() {
 
     let right_black = new Circle();
     right_black.position = c_coord_2;
-    right_black.size = 100.0;
+    right_black.size = 110.0;
     right_black.color = [0.0,0.0,0.0,1.0];
     right_black.segments = 100;
     g_shapesList.push(right_black);
@@ -322,7 +322,7 @@ function FallPage() {
     left_black.position = c_coord;
     left_black.size = 100.0;
     left_black.color = [0.0,0.0,0.0,1.0];
-    left_black.segments = 100;
+    left_black.segments = 110;
     g_shapesList.push(left_black);
 
 
