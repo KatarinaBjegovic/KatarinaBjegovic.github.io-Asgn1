@@ -274,8 +274,8 @@ function click(ev ) {
 
 
 function FallPage() {
-    let L_circle = [0,0,0]; // size 120
-    let R_circle = [0,0,0]; // size 120
+    let L_circle = [-20,0,0]; // size 120
+    let R_circle = [80,0,0]; // size 120
 
     let branch = [20,100, 0, 180, 40, 160];
     let branch_black = [25, 120, 5, 175, 35, 155];
@@ -286,8 +286,8 @@ function FallPage() {
         branch
     ];
     let tri_black =[
-        [-80, 0, -40, 80, 0, 0],
-        [40, 0, 120, 0 , 80, 80], 
+        [-60, 20, -40, 60, -20, 20],
+        [60, 20, 100, 20 , 80, 60], 
         branch_black
     ];
 
@@ -300,7 +300,7 @@ function FallPage() {
     left.position = c_coord;
     left.size = 120.0;
     left.color = [1.0,1.0,1.0,1.0];
-    left.segments = 20;
+    left.segments = 100;
     g_shapesList.push(left);
 
     let c_coord_2 = [R_circle[0]/200, R_circle[1]/200, R_circle[2]/200];
@@ -308,19 +308,21 @@ function FallPage() {
     right.position = c_coord_2;
     right.size = 120.0;
     right.color = [1.0,1.0,1.0,1.0];
-    right.segments = 20;
+    right.segments = 100;
     g_shapesList.push(right);
+
     let right_black = new Circle();
-    right_black.position = c_coord;
+    right_black.position = c_coord_2;
     right_black.size = 100.0;
-    right_black.color = [0.0,0.0,0.0,0.0];
-    right_black.segments = 20;
+    right_black.color = [0.0,0.0,0.0,1.0];
+    right_black.segments = 100;
     g_shapesList.push(right_black);
+
     let left_black = new Circle();
     left_black.position = c_coord;
     left_black.size = 100.0;
-    left_black.color = [0.0,0.0,0.0,0.0];
-    left_black.segments = 20;
+    left_black.color = [0.0,0.0,0.0,1.0];
+    left_black.segments = 100;
     g_shapesList.push(left_black);
 
 
@@ -386,13 +388,14 @@ function SummerPage() {
     center.position = c_coord;
     center.size = 100.0;
     center.color = [1.0,1.0,1.0,1.0];
-    center.segments = 20;
+    center.segments = 100;
     g_shapesList.push(center);
+
     let center_black = new Circle();
     center_black.position = c_coord;
     center_black.size = 80.0;
-    center_black.color = [0.0,0.0,0.0,0.0];
-    center_black.segments = 20;
+    center_black.color = [0.0,0.0,0.0,1.0];
+    center_black.segments = 100;
     g_shapesList.push(center_black);
 
     for (let i = 0; i < axis_tri.length; i++) {
