@@ -277,17 +277,17 @@ function FallPage() {
     let L_circle = [-40,0,0]; // size 120
     let R_circle = [60,0,0]; // size 120
 
-    let branch = [20,100, 0, 180, 40, 160];
-    let branch_black = [20, 115, 5, 175, 35, 155];
+    let branch = [0,100, -20, 180, 20, 160];
+    let branch_black = [0, 115, -25, 175, 15, 160];
 
     let tri =[
-        [-80, 0, -40, 80, 0, 0],
+        [-80, 0,  0, 0, -40, 80],
         [40, 0, 120, 0 , 80, 80],
         branch
     ];
     let tri_black =[
-        [-60, 10, -40, 70, -20, 10],
-        [60, 10, 100, 10 , 80, 70], 
+        [-70, 10, -10, 10,  -40, 70],
+        [50, 10, 110, 10 , 80, 70], 
         branch_black
     ];
 
@@ -313,14 +313,14 @@ function FallPage() {
 
     let right_black = new Circle();
     right_black.position = c_coord_2;
-    right_black.size = 110.0;
+    right_black.size = 112.0;
     right_black.color = [0.0,0.0,0.0,1.0];
     right_black.segments = 100;
     g_shapesList.push(right_black);
 
     let left_black = new Circle();
     left_black.position = c_coord;
-    left_black.size = 100.0;
+    left_black.size = 112.0;
     left_black.color = [0.0,0.0,0.0,1.0];
     left_black.segments = 110;
     g_shapesList.push(left_black);
