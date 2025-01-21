@@ -277,8 +277,8 @@ function FallPage() {
     let L_circle = [-40,0,0]; // size 120
     let R_circle = [60,0,0]; // size 120
 
-    let branch = [0,100, -20, 180, 20, 160];
-    let branch_black = [0, 115, -25, 175, 15, 160];
+    let branch = [0, 100, -20, 180, 20, 160];
+    let branch_black = [0, 115, -15, 175, 15, 160];
 
     let tri =[
         [-80, 0,  0, 0, -40, 80],
