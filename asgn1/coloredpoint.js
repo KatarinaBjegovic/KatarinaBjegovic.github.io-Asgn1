@@ -192,6 +192,7 @@ function addActionsForHTMLUI(){
     document.getElementById('pix_winter').onclick = WinterPage;
     document.getElementById('pix_spring').onclick = SpringPage;
     document.getElementById('pix_summer').onclick = SummerPage;
+    document.getElementById('pix_fall').onclick = FallPage;
 
     document.getElementById('save').onclick = function() {g_shapesList_SAVED = g_shapesList; };
     document.getElementById('view').onclick = function() {g_shapesList = []; renderSavedShapes(); g_shapesList = g_shapesList_SAVED.slice(); };
@@ -271,6 +272,80 @@ function click(ev ) {
 }
 
 
+
+function FallPage() {
+    let L_circle = [0,0,0]; // size 120
+    let R_circle = [0,0,0]; // size 120
+
+    let branch = [20,100, 0, 180, 40, 160];
+    let branch_black = [25, 120, 5, 175, 35, 155];
+
+    let tri =[
+        [-80, 0, -40, 80, 0, 0],
+        [40, 0, 120, 0 , 80, 80],
+        branch
+    ];
+    let tri_black =[
+        [-80, 0, -40, 80, 0, 0],
+        [40, 0, 120, 0 , 80, 80], 
+        branch_black
+    ];
+
+    gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
+    g_shapesList=[]; 
+    renderAllShapes();
+
+    let c_coord = [L_circle[0]/200, L_circle[1]/200, L_circle[2]/200];
+    let left = new Circle();
+    left.position = c_coord;
+    left.size = 120.0;
+    left.color = [1.0,1.0,1.0,1.0];
+    left.segments = 20;
+    g_shapesList.push(left);
+
+    let c_coord_2 = [R_circle[0]/200, R_circle[1]/200, R_circle[2]/200];
+    let right = new Circle();
+    right.position = c_coord_2;
+    right.size = 120.0;
+    right.color = [1.0,1.0,1.0,1.0];
+    right.segments = 20;
+    g_shapesList.push(right);
+    let right_black = new Circle();
+    right_black.position = c_coord;
+    right_black.size = 100.0;
+    right_black.color = [0.0,0.0,0.0,0.0];
+    right_black.segments = 20;
+    g_shapesList.push(right_black);
+    let left_black = new Circle();
+    left_black.position = c_coord;
+    left_black.size = 100.0;
+    left_black.color = [0.0,0.0,0.0,0.0];
+    left_black.segments = 20;
+    g_shapesList.push(left_black);
+
+
+
+    for (let i = 0; i < tri.length; i++) {
+        let t_coord = tri[i];
+        t_coord = [t_coord[0]/200, t_coord[1]/200, t_coord[2]/200, t_coord[3]/200, t_coord[4]/200, t_coord[5]/200];
+        let white_tri = new HardTriangle();
+        white_tri.coors = t_coord;
+        white_tri.color = [1.0,1.0,1.0,1.0];
+        g_shapesList.push(white_tri);
+    }
+    for (let i = 0; i < tri_black.length; i++) {
+        let t_coord = tri_black[i];
+        t_coord = [t_coord[0]/200, t_coord[1]/200, t_coord[2]/200, t_coord[3]/200, t_coord[4]/200, t_coord[5]/200];
+        let white_tri = new HardTriangle();
+        white_tri.coors = t_coord;
+        white_tri.color = [0.0,0.0,0.0,1.0];
+        g_shapesList.push(white_tri);
+    }
+
+    renderAllShapes();
+}
+
+
 function SummerPage() {
     let center_circle = [0,0,0]; // size 100
     
@@ -296,10 +371,10 @@ function SummerPage() {
     ];
 
     let other_tri_black = [ 
-        [-100, 80, -100, 100, -80, 100],
-        [-100, -80, -100, -100, -80, -100],
-        [100, 80, 100, 100, 80, 100],
-        [100, -80, 100, -100, 80, -100]
+        [-100, 80, -110, 110, -80, 100],
+        [-100, -80, -110, -110, -80, -100],
+        [100, 80, 110, 110, 80, 100],
+        [100, -80, 110, -110, 80, -100]
     ];
 
     gl.clear(gl.COLOR_BUFFER_BIT); // Clear the canvas before drawing
@@ -315,10 +390,10 @@ function SummerPage() {
     g_shapesList.push(center);
     let center_black = new Circle();
     center_black.position = c_coord;
-    center_black.size = 100.0;
+    center_black.size = 80.0;
     center_black.color = [0.0,0.0,0.0,0.0];
     center_black.segments = 20;
-    g_shapesList.push(center);
+    g_shapesList.push(center_black);
 
     for (let i = 0; i < axis_tri.length; i++) {
         let t_coord = axis_tri[i];
