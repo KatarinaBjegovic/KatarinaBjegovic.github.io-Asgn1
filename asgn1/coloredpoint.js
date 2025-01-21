@@ -191,7 +191,7 @@ function addActionsForHTMLUI(){
 
     document.getElementById('pix_winter').onclick = WinterPage;
     document.getElementById('pix_spring').onclick = SpringPage;
-    document.getElementById('pix_spring').onclick = SummerPage;
+    document.getElementById('pix_summer').onclick = SummerPage;
 
     document.getElementById('save').onclick = function() {g_shapesList_SAVED = g_shapesList; };
     document.getElementById('view').onclick = function() {g_shapesList = []; renderSavedShapes(); g_shapesList = g_shapesList_SAVED.slice(); };
@@ -349,7 +349,7 @@ function SummerPage() {
 
     for (let i = 0; i < other_tri_black.length; i++) {
         let t_coord = other_tri_black[i];
-        t_coord = [t_coord[0]/150, t_coord[1]/150, t_coord[2]/150, t_coord[3]/150, t_coord[4]/150, t_coord[5]/150];
+        t_coord = [t_coord[0]/200, t_coord[1]/200, t_coord[2]/200, t_coord[3]/200, t_coord[4]/200, t_coord[5]/200];
         let white_tri = new HardTriangle();
         white_tri.coors = t_coord;
         white_tri.color = [0.0,0.0,0.0,1.0];
